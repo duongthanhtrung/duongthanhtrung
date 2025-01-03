@@ -5,14 +5,45 @@ This repository contains my solutions for the 99Tech Code Challenge as part of t
 ## About Me ##
 - **Position Applied:** Front-End Developer
 - **Problems Attempted:**
-    - **Problem 1:** Three ways to sum to `n`
-    - **Problem 2:** Fancy Form
-    - **Problem 3:** Messy React
+  - **Problem 1:** Three ways to sum to `n`
+  - **Problem 2:** Fancy Form
+  - **Problem 3:** Messy React
 
 I have focused on demonstrating my skills in front-end development by tackling the above problems. If you have any questions, feel free to reach out.
 
-## Problem 1: Assumptions and Input Validation ##
+## Problem 1: Assumptions and Input Validation
 For **Problem 1**, I have added validation to ensure the input is a positive integer greater than 0. This is to handle potential edge cases where a non-positive integer could cause issues in the summation process. Although the problem specifies that the input will always produce a result lesser than `Number.MAX_SAFE_INTEGER`, I’ve included this validation to safeguard against unexpected inputs and ensure correct functionality in a broader context.
+
+## Problem 2: Fancy Form (Currency Swap Form)
+
+For **Problem 2**, I created an interactive **currency swap form** that allows users to select currencies, input amounts, and view the converted value instantly. Below are the key details and assumptions:
+
+### 🛠️ **How to Run**
+There are two ways to test the solution:  
+1. **Using the built build files:**
+   - Navigate to the folder: `src/problem2/dist`.
+   - Open the `index.html` file directly in a web browser to view the result.
+
+2. **Running the development environment:**
+   - Navigate to the folder: `src/problem2`.
+   - Run `npm install` to install dependencies.
+   - Execute `npm run dev` to start the development server.  
+     **Note:** Ensure that Node.js is installed on your machine.
+
+### 📋 **Assumptions**
+- The provided JSON data contains some duplicate entries. I applied the following logic to remove duplicates, prioritizing in order:
+  1. The most recent entry.
+  2. The highest price.
+  3. The last remaining entry if all else is equal.
+
+- The design has been adjusted to ensure usability and visual consistency. Converted amounts are updated immediately upon input or currency selection for a better user experience.  
+  - The "CONFIRM SWAP" button has been retained to maintain a stable layout and display a loading state during the swap process.
+
+### ✨ **Bonus Features**
+- **Live Conversion:** The converted value is displayed in real-time as the user inputs data or changes currency.
+- **Input Validation:** Includes error handling for invalid inputs and edge cases.
+- **Responsive Design:** The form layout adapts to different screen sizes for a seamless experience.
+- **Loading Indicator:** A loading state is shown when the "CONFIRM SWAP" button is clicked, simulating a backend interaction.
 
 ## Problem 3: Identifying Computational Inefficiencies and Anti-Patterns ##
 
@@ -42,7 +73,13 @@ In reviewing the provided code for **Problem 3**, I identified several areas for
     - **Issue**: The variable `lhsPriority` is used in the original code but isn't defined anywhere, causing potential errors and confusion. It was unclear where this variable came from or how it should be calculated.
     - **Improvement**: Removed the reference to `lhsPriority`, as it wasn't clearly defined. Instead, the code uses the priority value of each balance directly, obtained by calling `getPriority(balance.blockchain)`.
 
-## Submission ##
-You can view my solutions in this repository. The problems I have not attempted (Problem 4 and Problem 5) are left as placeholders to maintain the structure of the repo.
+7. **Logic Error**:
+    - **Issue**: The original code filters balances where `balance.amount <= 0`, but it was nested inside an `if` condition that checks `lhsPriority > -99`. This could lead to logic errors, especially when `lhsPriority` is not available or undefined.
+    - **Improvement**: I simplified the filtering logic. The refactored code checks `balance.priority > -99` and `balance.amount > 0` directly in a single `filter` operation, ensuring the filtering is clear, accurate, and free from unnecessary conditions.
 
-Thank you for reviewing my submission!
+## Submission
+
+This repository contains all the solutions I have worked on.  
+For **Problem 2**, I included both the source code and the build directory to make it easy for reviewers to test the solution.  
+
+Thank you for reviewing my submission! If you have any questions or need clarifications, feel free to reach out.
